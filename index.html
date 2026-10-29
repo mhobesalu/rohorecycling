@@ -1,6 +1,10 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Roho Recycling</title>
-<meta name="claude:viewport-fit-sides" content="cover">
-<meta name="description" content="Roho OÜ buys printed circuit board scrap from recyclers and dismantlers. Licensed e-waste facility in Tallinn, Estonia.">
+<meta name="description" content="Roho OÜ buys e-scrap: circuit boards, hard drives and more, from recyclers and dismantlers. Licensed e-waste facility in Tallinn, Estonia.">
 <link rel="icon" type="image/png" href="favicon.png">
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
 <meta property="og:title" content="Roho Recycling">
@@ -40,6 +44,10 @@
   --gold:#d9aa4a; --gold-ink:#1b1206; --accent:#d9c6f5; --logo-l:none; --logo-d:block; color-scheme:dark }
 
 *{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
+body{margin:0}
+img{max-width:100%}
+[hidden]{display:none!important}
 body{background:var(--paper);color:var(--ink);font-family:var(--body);font-size:var(--s2);line-height:1.6}
 h1,h2,h3{font-family:var(--display);font-weight:800;line-height:1.05;margin:0;text-wrap:balance}
 h2{font-size:var(--s5);color:var(--accent)}
@@ -68,6 +76,7 @@ header.top{background:var(--paper);border-bottom:1px solid var(--line)}
 /* hero */
 .hero{position:relative;background:var(--purple);color:var(--band-ink);overflow:hidden}
 .hero canvas{position:absolute;inset:0;width:100%;height:100%;pointer-events:none}
+@media (max-width:700px){.hero canvas{opacity:.35}}
 .hero .wrap{position:relative;display:grid;grid-template-columns:minmax(0,1.35fr) minmax(0,1fr);gap:3rem;padding-block:4.5rem 5rem;align-items:end}
 .hero h1{font-size:var(--s6);max-width:15ch}
 .hero h1 em{font-style:normal;color:var(--gold)}
@@ -189,6 +198,8 @@ footer .mark{display:flex;gap:1rem;align-items:center}
   section{padding-block:3.5rem}
 }
 </style>
+</head>
+<body>
 
 <header class="top">
   <div class="wrap nav">
@@ -450,3 +461,5 @@ footer .mark{display:flex;gap:1rem;align-items:center}
 
 })();
 </script>
+</body>
+</html>
