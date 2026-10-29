@@ -125,6 +125,15 @@ section + section{border-top:1px solid var(--line)}
 .steps h3{font-size:var(--s3);font-family:var(--body);font-weight:600}
 .steps p{color:var(--muted);font-size:var(--s1)}
 
+/* values */
+.values{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:2rem 2.5rem}
+.value{display:grid;gap:.5rem;align-content:start;padding-top:1rem;border-top:2px solid var(--line)}
+.value h3{font-size:var(--s3);color:var(--accent);display:flex;gap:.6rem;align-items:center}
+.value h3::before{content:"";flex:none;width:0;height:0;border-left:7px solid transparent;border-right:7px solid transparent;border-bottom:12px solid var(--gold)}
+.value p{color:var(--muted);font-size:var(--s1)}
+@media (max-width:900px){.values{grid-template-columns:minmax(0,1fr) minmax(0,1fr)}}
+@media (max-width:520px){.values{grid-template-columns:minmax(0,1fr)}}
+
 /* compliance */
 .comp{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.2fr);gap:3rem;align-items:start}
 .comp-text{display:grid;gap:1rem;color:var(--muted)}
@@ -191,6 +200,7 @@ footer .mark{display:flex;gap:1rem;align-items:center}
       <ul>
         <li><a href="#buy">What we buy</a></li>
         <li><a href="#process">How it works</a></li>
+        <li><a href="#values">Values</a></li>
         <li><a href="#compliance">Compliance</a></li>
         <li><a href="#contact">Contact</a></li>
       </ul>
@@ -320,6 +330,24 @@ footer .mark{display:flex;gap:1rem;align-items:center}
       <li><h3>Prepayment and collection</h3><p>You receive 50–70% in advance. We collect the material and prepare the shipment documents with you.</p></li>
       <li><h3>Weigh and settle</h3><p>We weigh the lot at our facility and pay the balance. Assay lots get 70% up front on the preliminary metal content and are settled on the final assay.</p></li>
     </ol>
+  </div>
+</section>
+
+<section id="values">
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="eyebrow">How we do business</p>
+      <h2>Straight deals, kept promises</h2>
+      <p>Good suppliers come back when every deal is fair. These are the rules we keep on every deal, big or small.</p>
+    </div>
+    <div class="values">
+      <div class="value"><h3>Honest grading</h3><p>We tell you which grade your material is and why, before anything is shipped. No downgrading after the truck arrives.</p></div>
+      <div class="value"><h3>Everything in writing</h3><p>Price, grade, payment and collection terms are agreed in a written contract before the material moves.</p></div>
+      <div class="value"><h3>Open numbers</h3><p>You receive the weights for every lot. For assay lots you also receive the sampling and lab results the settlement is based on.</p></div>
+      <div class="value"><h3>Paid as promised</h3><p>50–70% is paid in advance after inspection, and the balance is paid on the terms in your contract.</p></div>
+      <div class="value"><h3>People, not a call centre</h3><p>Roho is run by its three owners. We visit suppliers in person, and you always talk to someone who can make the decision.</p></div>
+      <div class="value"><h3>Legal and traceable</h3><p>A permitted facility, the correct EU shipment documents for every load, and metals recovered at licensed refineries instead of mined again.</p></div>
+    </div>
   </div>
 </section>
 
