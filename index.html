@@ -165,7 +165,6 @@ td.code{font-family:var(--mono);white-space:nowrap;font-variant-numeric:tabular-
 .person{background:var(--panel);border:1px solid var(--line);border-radius:8px;padding:1.2rem}
 .person{display:grid;gap:.1rem;font-size:var(--s1);align-content:start}
 .person .role{font-family:var(--mono);font-size:.75rem;letter-spacing:.06em;text-transform:uppercase;color:var(--gold);margin-bottom:.35rem}
-.people-wrap{display:grid;gap:1rem;align-content:start}
 .person strong{color:var(--ink);font-size:var(--s2)}
 .person .sel{font-family:var(--mono);color:var(--ink);user-select:all}
 .wa{display:inline-flex;align-items:center;gap:.45rem;margin-top:.45rem;width:max-content;padding:.5rem .85rem;border-radius:999px;background:#25d366;color:#0b2e17;font-weight:600;font-size:var(--s1);text-decoration:none}
@@ -394,15 +393,40 @@ footer .mark{display:flex;gap:1rem;align-items:center}
         <p class="eyebrow">Request an offer</p>
         <h2>Tell us what you have</h2>
       </div>
-      <p>The fastest way to reach us is WhatsApp. Send photos of the boards and an estimate of weight per grade, and we reply with an offer.</p>
-    </aside>
-    <div class="people-wrap">
-    <div class="people">
+      <p>Use the form or message us on WhatsApp. Send photos of the material and an estimate of weight per grade, and we reply with an offer.</p>
+      <div class="people">
         <div class="person"><strong>Maria Hõbesalu</strong><span class="role">Development</span><a class="wa" href="https://wa.me/37258262802" target="_blank" rel="noopener"><svg width="16" height="16" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm5.3 14.1c-.2.6-1.3 1.2-1.8 1.2-.5.1-1 .2-3.3-.7-2.8-1.1-4.6-4-4.7-4.2-.1-.2-1.1-1.5-1.1-2.9s.7-2.1 1-2.4c.3-.3.6-.3.8-.3h.6c.2 0 .4 0 .6.5l.9 2.1c.1.2.1.4 0 .5l-.4.6-.4.4c-.1.2-.3.3-.1.6.2.3.8 1.3 1.7 2.1 1.2 1 2.1 1.3 2.4 1.5.3.1.5.1.6-.1l.9-1c.2-.3.4-.2.6-.1l2 1c.3.1.5.2.5.3.1.2.1.7-.1 1.2Z"/></svg>WhatsApp Maria</a></div>
         <div class="person"><strong>Raido Oras</strong><span class="role">Operations</span><a class="wa" href="https://wa.me/37256621297" target="_blank" rel="noopener"><svg width="16" height="16" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm5.3 14.1c-.2.6-1.3 1.2-1.8 1.2-.5.1-1 .2-3.3-.7-2.8-1.1-4.6-4-4.7-4.2-.1-.2-1.1-1.5-1.1-2.9s.7-2.1 1-2.4c.3-.3.6-.3.8-.3h.6c.2 0 .4 0 .6.5l.9 2.1c.1.2.1.4 0 .5l-.4.6-.4.4c-.1.2-.3.3-.1.6.2.3.8 1.3 1.7 2.1 1.2 1 2.1 1.3 2.4 1.5.3.1.5.1.6-.1l.9-1c.2-.3.4-.2.6-.1l2 1c.3.1.5.2.5.3.1.2.1.7-.1 1.2Z"/></svg>WhatsApp Raido</a></div>
         <div class="person"><strong>Kairin Oras</strong><span class="role">Finances</span></div>
       </div>
-    </div>
+    </aside>
+    <form id="offer" novalidate>
+      <input type="hidden" name="access_key" value="WEB3FORMS_ACCESS_KEY">
+      <input type="hidden" name="subject" value="New offer request from rohorecycling.com">
+      <input type="hidden" name="from_name" value="Roho website">
+      <input type="checkbox" name="botcheck" id="f-botcheck" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px">
+      <label>Company<input id="f-company" name="company" required autocomplete="organization"></label>
+      <label>Country<input id="f-country" name="country" required autocomplete="country-name"></label>
+      <label>Your name<input id="f-name" name="name" autocomplete="name"></label>
+      <label>Email<input id="f-email" name="email" type="email" required autocomplete="email"></label>
+      <label>Main material
+        <select id="f-material" name="material">
+          <option>Circuit boards (PCB)</option>
+          <option>Hard drives (HDD)</option>
+          <option>Motherboards</option>
+          <option>CPUs and RAM</option>
+          <option>Shredded PCB</option>
+          <option>Mixed / not sure</option>
+        </select>
+      </label>
+      <label>Volume per month (tonnes)<input id="f-volume" name="volume" inputmode="decimal" placeholder="e.g. 5"></label>
+      <label class="full">Details<textarea id="f-details" name="details" placeholder="Material types, condition, packaging, where the material is now"></textarea></label>
+      <div class="full" style="display:flex;gap:1rem;align-items:center;flex-wrap:wrap">
+        <button class="btn btn-primary" type="submit" id="f-submit">Send request</button>
+        <span class="form-note">We reply to the email address you give.</span>
+      </div>
+      <p class="sent" id="sent" role="status" hidden></p>
+    </form>
   </div>
 </section>
 </main>
@@ -461,6 +485,20 @@ footer .mark{display:flex;gap:1rem;align-items:center}
 
 
 
+  // Offer form: sent through Web3Forms, which emails the request to Roho
+  var f=document.getElementById('offer'), out=document.getElementById('sent');
+  if(f){f.addEventListener('submit',function(e){
+    e.preventDefault();
+    var missing=['f-company','f-country','f-email'].filter(function(id){return !document.getElementById(id).value.trim()});
+    if(missing.length){out.textContent='Add your company, country and email so we can reply.';out.hidden=false;document.getElementById(missing[0]).focus();return}
+    if(!/(^|\.)rohorecycling\.com$/.test(location.hostname)){out.textContent='Preview only: nothing was sent. On rohorecycling.com this request is emailed to Roho.';out.hidden=false;return}
+    var btn=document.getElementById('f-submit'); btn.disabled=true;
+    fetch('https://api.web3forms.com/submit',{method:'POST',headers:{'Accept':'application/json'},body:new FormData(f)})
+      .then(function(r){return r.json()})
+      .then(function(j){if(!j.success)throw 0;out.textContent='Thank you. We received your request and will reply soon.';f.reset()})
+      .catch(function(){out.textContent='Your request could not be sent. Please try again or message us on WhatsApp.'})
+      .then(function(){out.hidden=false;btn.disabled=false});
+  })}
 })();
 </script>
 </body>
